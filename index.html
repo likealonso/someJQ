@@ -16,9 +16,14 @@
     <div class='one'>Some content</div>
     <div class='one'>Some content</div>
     <div class='one'>Some content</div>
+    <input type="text" value="helloworld" id="myInput">
     <script>
         $(document).ready(function() {
-            $(".one").html("jHello")
+            // $(".one").html("jHello<br>hey")
+            // $(".one").text("jHello<br>hey")
+            // $("#myInput").val("new content")
+            var myHolder = $("#myInput").val();
+            $(".one").html(myHolder)
         })
     </script>
 </body>
