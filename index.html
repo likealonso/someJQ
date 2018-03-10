@@ -9,22 +9,43 @@
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
     <title>jQuery!</title>
+    <style>
+        li {
+            color: blue;
+        }
+    </style>
 </head>
 <body>
     <div id='output'>Output content</div>
-    <div class='one'>Some content</div>
-    <div class='one'>Some content</div>
-    <div class='one'>Some content</div>
-    <div class='one'>Some content</div>
+        <div class='one'>Some content</div>
+        <div class='one'>Some content</div>
+        <div class='one'>Some content</div>
+        <div class='one'>Some content</div>
     <input type="text" value="helloworld" id="myInput">
-    <script>
+
+    <ul>
+        <li>One</li>
+        <li>Two</li>
+        <li>Three</li>
+        <li>Four</li>
+    </ul>
+<script>
         $(document).ready(function() {
+            // $(".one").each(() => {
+            //     console.log($(this).html())
+            // })
+            $("li").each(function(index, e) {
+                console.log($(this));
+                console.log(index);
+                console.log(e);
+                $(e).text((index + 1) + " Count")
+            })
             // $(".one").html("jHello<br>hey")
             // $(".one").text("jHello<br>hey")
             // $("#myInput").val("new content")
-            var myHolder = $("#myInput").val();
-            $(".one").html(myHolder)
+            // var myHolder = $("#myInput").val();
+            // $(".one").html(myHolder)
         })
-    </script>
+</script>
 </body>
 </html>
