@@ -40,6 +40,14 @@
                 console.log(e);
                 $(e).text((index + 1) + " Count")
             })
+
+            $("#output").prepend("PREPEND")
+            $("#output").append("APPEND")
+            $("#output").before("BEFORE ")
+            $("#output").after("AFTER ")
+
+            $("#output").empty()
+            $("#output").remove()
             // $(".one").html("jHello<br>hey")
             // $(".one").text("jHello<br>hey")
             // $("#myInput").val("new content")
