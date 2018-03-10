@@ -10,13 +10,14 @@
   crossorigin="anonymous"></script>
     <title>jQuery!</title>
     <style>
-        li {
+        li:nth-child(3) {
             color: blue;
         }
     </style>
 </head>
 <body>
     <div id='output'>Output content</div>
+        <div class='one'><a href="#" id="myClicker">Click me</a> some input</div>
         <div class='one'>Some content</div>
         <div class='one'>Some content</div>
         <div class='one'>Some content</div>
@@ -31,29 +32,61 @@
     </ul>
 <script>
         $(document).ready(function() {
+            var holder = ''
+            $("li:eq(0)").mouseover(function(event) {
+                holder = $(this).text()
+                $(this).text('Get off me')
+            })
+
+            $("li:eq(0)").mouseout(function(event) {
+                $(this).text(holder)
+            })
+            
+            $("#myInput").keydown(function(event) {
+                $("#output").html(event.which + " key is pressed")
+            })
+
+            $("#myInput").focusout(function(event) {
+                $("#output").html($(this).val() + " field contents")
+            })
+
+            $("#myClicker").click(function(event) {
+                event.preventDefault()
+                $("#output").html('Clicked by me')
+            })
+
+            $(".one").on("click", function(event) {
+                console.log($(this));
+                $("#output").html("Clicked")
+            })
+        })
+
+            $("li:eq(2)").click(function(event){
+                console.log($(this));
+            })
+
             // $(".one").each(() => {
             //     console.log($(this).html())
             // })
-            $("li").each(function(index, e) {
-                console.log($(this));
-                console.log(index);
-                console.log(e);
-                $(e).text((index + 1) + " Count")
-            })
+            // $("li").each(function(index, e) {
+            //     console.log($(this));
+            //     console.log(index);
+            //     console.log(e);
+            //     $(e).text((index + 1) + " Count")
+            // })
 
-            $("#output").prepend("PREPEND")
-            $("#output").append("APPEND")
-            $("#output").before("BEFORE ")
-            $("#output").after("AFTER ")
+            // $("#output").prepend("PREPEND")
+            // $("#output").append("APPEND")
+            // $("#output").before("BEFORE ")
+            // $("#output").after("AFTER ")
 
-            $("#output").empty()
-            $("#output").remove()
+            // $("#output").empty()
+            // $("#output").remove()
             // $(".one").html("jHello<br>hey")
             // $(".one").text("jHello<br>hey")
             // $("#myInput").val("new content")
             // var myHolder = $("#myInput").val();
             // $(".one").html(myHolder)
-        })
 </script>
 </body>
 </html>
