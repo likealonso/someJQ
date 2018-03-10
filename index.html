@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
     <script
-  src="http://code.jquery.com/jquery-3.3.1.js"
-  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+  src='http://code.jquery.com/jquery-3.3.1.js'
+  integrity='sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60='
+  crossorigin='anonymous'></script>
     <title>jQuery!</title>
     <style>
         li:nth-child(3) {
@@ -17,12 +17,22 @@
 </head>
 <body>
     <div id='output'>Output content</div>
-        <div class='one'><a href="#" id="myClicker">Click me</a> some input</div>
-        <div class='one'>Some content</div>
-        <div class='one'>Some content</div>
-        <div class='one'>Some content</div>
-        <div class='one'>Some content</div>
-    <input type="text" value="helloworld" id="myInput">
+        <div class='one'><a href='#' id='myClicker'>Click me</a> some input</div>
+        <p id='grandparent'>
+            <div class='parentone'>
+                <div class='childone'>
+                    <p class='one'>Child 1</p>
+                </div>
+                <div class='childtwo'>
+                    <p class='two'>Child 2</p>
+                </div>
+                <div class='childthree'>
+                    <p class='one'>Child 3</p>
+                </div>
+                <p>I'm a paragraph</p>
+            </div>
+        </p>
+    <input type='text' value='helloworld' id='myInput'>
 
     <ul>
         <li>One</li>
@@ -32,61 +42,74 @@
     </ul>
 <script>
         $(document).ready(function() {
-            var holder = ''
-            $("li:eq(0)").mouseover(function(event) {
-                holder = $(this).text()
-                $(this).text('Get off me')
-            })
+            console.log($('.two').parents())
+            console.log($('.parentone').children())
+            // $('.parentone').children().each(function(index) {
+            //     $(this).text(index + ' new one')
+            // })
 
-            $("li:eq(0)").mouseout(function(event) {
-                $(this).text(holder)
-            })
+            // $('.parentone').children('div.childtwo').html('CHILD ONE')
+            // $('.parentone').find('div p').html('PARAGRAPH')
+            // $('.parentone div.childone').siblings('p').html('NEW HTML')
+            // $('.childone').next().html('NEXT')
+            // $('.childone').nextAll().html('NEXTALL')
             
-            $("#myInput").keydown(function(event) {
-                $("#output").html(event.which + " key is pressed")
-            })
-
-            $("#myInput").focusout(function(event) {
-                $("#output").html($(this).val() + " field contents")
-            })
-
-            $("#myClicker").click(function(event) {
-                event.preventDefault()
-                $("#output").html('Clicked by me')
-            })
-
-            $(".one").on("click", function(event) {
-                console.log($(this));
-                $("#output").html("Clicked")
-            })
         })
+    //     var holder = ''
+    //     $('li:eq(0)').mouseover(function(event) {
+    //         holder = $(this).text()
+    //         $(this).text('Get off me')
+    //     })
 
-            $("li:eq(2)").click(function(event){
-                console.log($(this));
-            })
+    //     $('li:eq(0)').mouseout(function(event) {
+    //         $(this).text(holder)
+    //     })
+        
+    //     $('#myInput').keydown(function(event) {
+    //         $('#output').html(event.which + ' key is pressed')
+    //     })
 
-            // $(".one").each(() => {
+    //     $('#myInput').focusout(function(event) {
+    //         $('#output').html($(this).val() + ' field contents')
+    //     })
+
+    //     $('#myClicker').click(function(event) {
+    //         event.preventDefault()
+    //         $('#output').html('Clicked by me')
+    //     })
+
+    //     $('.one').on('click', function(event) {
+    //         console.log($(this));
+    //         $('#output').html('Clicked')
+    //     })
+    // })
+
+    //     $('li:eq(2)').click(function(event){
+    //         console.log($(this));
+    //     })
+
+            // $('.one').each(() => {
             //     console.log($(this).html())
             // })
-            // $("li").each(function(index, e) {
+            // $('li').each(function(index, e) {
             //     console.log($(this));
             //     console.log(index);
             //     console.log(e);
-            //     $(e).text((index + 1) + " Count")
+            //     $(e).text((index + 1) + ' Count')
             // })
 
-            // $("#output").prepend("PREPEND")
-            // $("#output").append("APPEND")
-            // $("#output").before("BEFORE ")
-            // $("#output").after("AFTER ")
+            // $('#output').prepend('PREPEND')
+            // $('#output').append('APPEND')
+            // $('#output').before('BEFORE ')
+            // $('#output').after('AFTER ')
 
-            // $("#output").empty()
-            // $("#output").remove()
-            // $(".one").html("jHello<br>hey")
-            // $(".one").text("jHello<br>hey")
-            // $("#myInput").val("new content")
-            // var myHolder = $("#myInput").val();
-            // $(".one").html(myHolder)
+            // $('#output').empty()
+            // $('#output').remove()
+            // $('.one').html('jHello<br>hey')
+            // $('.one').text('jHello<br>hey')
+            // $('#myInput').val('new content')
+            // var myHolder = $('#myInput').val();
+            // $('.one').html(myHolder)
 </script>
 </body>
 </html>
