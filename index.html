@@ -13,6 +13,10 @@
         li:nth-child(3) {
             color: blue;
         }
+        
+        #grandparent {
+            /* display: none */
+        }
 
         .myClassA {
             background-color: beige;
@@ -28,7 +32,8 @@
 <body>
     <div id='output'>Output content</div>
         <div class='one'><a href='#' id='myClicker'>Click me</a> some input</div>
-        <p id='grandparent'>
+        <img id='myImage' src='http:/lorempixel.com/200/200' />
+        <div id='grandparent'>
             <div class='parentone'>
                 <div class='childone'>
                     <p class='one myClassB'>Child 1</p>
@@ -41,7 +46,7 @@
                 </div>
                 <p>I'm a paragraph</p>
             </div>
-        </p>
+        </div>
     <input type='text' value='helloworld' id='myInput'>
 
     <ul>
@@ -52,102 +57,143 @@
     </ul>
 <script>
         $(document).ready(function() {
+            $('#myImage').css('position', 'absolute');
+            $('#myImage').css('top', '200px');
+            $('.childone').click(function() {
+                $('#myImage').animate({
+                    opacity: 0.5,
+                    left: '+=100px'
+                }, 1000, myFunction)
+            })            
+            function myFunction() {
+                $('#output').html('WORKING')
+            }
+        
+            $('#myImage').click(function() {
+                $('#grandparent').slideToggle('slow', function() {
+                    $('#output').html('SLIDE')
+                })
+            })
+
+            $('.childone').click(function() {
+                $('#myImage').fadeOut(500)
+            })
+
+            $('.childtwo').click(function() {
+                $('#myImage').fadeTo(200, 0.5)
+            })
+            $('.childone').click(function() {
+                $('#myImage').hide(3000)
+            })
+            $('.childtwo').click(function() {
+                $('#myImage').show(1000)
+            })
+            $('.childthree').click(function() {
+                $('#myImage').toggle(1000, myFunction)
+            })
+
+        
+            $('#myImage').click(function() {
+                var myOutput = $(this).attr('src');
+                $('#output').html(myOutput)
+                $(this).attr('src', 'http://lorempixel.com/300/300')
+            })
             $('p').click(function() {
                 $(this).toggleClass('myClassA');
                 $(this).toggleClass('myClassB');
             })
-        })
-            //     if ($(this).hasClass('myClassA')) {
-            //         $(this).removeClass('myClassA')
-            //         $(this).addClass('myClassB')
-            //     } else {
-            //     $(this).removeClass('myClassB')
-            //     $(this).addClass('myClassA')
-            //     }
-            // })
-            // $('p').click(function() {
-            //     $(this).css({
-            //         'background-color':'green',
-            //         'color':'yellow'
-            //     })
-            // })
-            // $('.parentone').children().last().css('color', 'red');
-            // $('p').css('background-color', 'blue');
-            // $('p').css({
-            //     'background-color':'yellow',
-            //     'color':'red'
-            // })
-
-            // $('.one').filter('p').html('FILTERED')
-            // $('.parentone').children().first().html('FIRST CHILD')
-            // $('.parentone').children().last().html('LAST CHILD')
-            // $('.parentone').children().eq(1).html('SECOND')
-        
-            // $('.parentone').children().each(function(index) {
-            //     $(this).text(index + ' new one')
-            // })
-
-            // $('.parentone').children('div.childtwo').html('CHILD ONE')
-            // $('.parentone').find('div p').html('PARAGRAPH')
-            // $('.parentone div.childone').siblings('p').html('NEW HTML')
-            // $('.childone').next().html('NEXT')
-            // $('.childone').nextAll().html('NEXTALL')
+                if ($(this).hasClass('myClassA')) {
+                    $(this).removeClass('myClassA')
+                    $(this).addClass('myClassB')
+                } else {
+                $(this).removeClass('myClassB')
+                $(this).addClass('myClassA')
+                }
             
-    //     var holder = ''
-    //     $('li:eq(0)').mouseover(function(event) {
-    //         holder = $(this).text()
-    //         $(this).text('Get off me')
-    //     })
+            $('p').click(function() {
+                $(this).css({
+                    'background-color':'green',
+                    'color':'yellow'
+                })
+            })
+            $('.parentone').children().last().css('color', 'red');
+            $('p').css('background-color', 'blue');
+            $('p').css({
+                'background-color':'yellow',
+                'color':'red'
+            })
 
-    //     $('li:eq(0)').mouseout(function(event) {
-    //         $(this).text(holder)
-    //     })
+            $('.one').filter('p').html('FILTERED')
+            $('.parentone').children().first().html('FIRST CHILD')
+            $('.parentone').children().last().html('LAST CHILD')
+            $('.parentone').children().eq(1).html('SECOND')
         
-    //     $('#myInput').keydown(function(event) {
-    //         $('#output').html(event.which + ' key is pressed')
-    //     })
+            $('.parentone').children().each(function(index) {
+                $(this).text(index + ' new one')
+            })
 
-    //     $('#myInput').focusout(function(event) {
-    //         $('#output').html($(this).val() + ' field contents')
-    //     })
+            $('.parentone').children('div.childtwo').html('CHILD ONE')
+            $('.parentone').find('div p').html('PARAGRAPH')
+            $('.parentone div.childone').siblings('p').html('NEW HTML')
+            $('.childone').next().html('NEXT')
+            $('.childone').nextAll().html('NEXTALL')
+            
+        var holder = ''
+        $('li:eq(0)').mouseover(function(event) {
+            holder = $(this).text()
+            $(this).text('Get off me')
+        })
 
-    //     $('#myClicker').click(function(event) {
-    //         event.preventDefault()
-    //         $('#output').html('Clicked by me')
-    //     })
+        $('li:eq(0)').mouseout(function(event) {
+            $(this).text(holder)
+        })
+        
+        $('#myInput').keydown(function(event) {
+            $('#output').html(event.which + ' key is pressed')
+        })
 
-    //     $('.one').on('click', function(event) {
-    //         console.log($(this));
-    //         $('#output').html('Clicked')
-    //     })
-    // })
+        $('#myInput').focusout(function(event) {
+            $('#output').html($(this).val() + ' field contents')
+        })
 
-    //     $('li:eq(2)').click(function(event){
-    //         console.log($(this));
-    //     })
+        $('#myClicker').click(function(event) {
+            event.preventDefault()
+            $('#output').html('Clicked by me')
+        })
 
-            // $('.one').each(() => {
-            //     console.log($(this).html())
-            // })
-            // $('li').each(function(index, e) {
-            //     console.log($(this));
-            //     console.log(index);
-            //     console.log(e);
-            //     $(e).text((index + 1) + ' Count')
-            // })
+        $('.one').on('click', function(event) {
+            console.log($(this));
+            $('#output').html('Clicked')
+        })
+    
 
-            // $('#output').prepend('PREPEND')
-            // $('#output').append('APPEND')
-            // $('#output').before('BEFORE ')
-            // $('#output').after('AFTER ')
+        $('li:eq(2)').click(function(event){
+            console.log($(this));
+        })
 
-            // $('#output').empty()
-            // $('#output').remove()
-            // $('.one').html('jHello<br>hey')
-            // $('.one').text('jHello<br>hey')
-            // $('#myInput').val('new content')
-            // var myHolder = $('#myInput').val();
-            // $('.one').html(myHolder)
+            $('.one').each(() => {
+                console.log($(this).html())
+            })
+            $('li').each(function(index, e) {
+                console.log($(this));
+                console.log(index);
+                console.log(e);
+                $(e).text((index + 1) + ' Count')
+            })
+
+            $('#output').prepend('PREPEND')
+            $('#output').append('APPEND')
+            $('#output').before('BEFORE ')
+            $('#output').after('AFTER ')
+
+            $('#output').empty()
+            $('#output').remove()
+            $('.one').html('jHello<br>hey')
+            $('.one').text('jHello<br>hey')
+            $('#myInput').val('new content')
+            var myHolder = $('#myInput').val();
+            $('.one').html(myHolder)
+        })
 </script>
 </body>
 </html>
