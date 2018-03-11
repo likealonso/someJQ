@@ -13,6 +13,16 @@
         li:nth-child(3) {
             color: blue;
         }
+
+        .myClassA {
+            background-color: beige;
+            color: cornflowerblue
+        }
+
+        .myClassB {
+            background-color: black;
+            color: white
+        }
     </style>
 </head>
 <body>
@@ -21,13 +31,13 @@
         <p id='grandparent'>
             <div class='parentone'>
                 <div class='childone'>
-                    <p class='one'>Child 1</p>
+                    <p class='one myClassB'>Child 1</p>
                 </div>
                 <div class='childtwo'>
-                    <p class='two'>Child 2</p>
+                    <p class='two myClassB'>Child 2</p>
                 </div>
                 <div class='childthree'>
-                    <p class='one'>Child 3</p>
+                    <p class='one myClassB'>Child 3</p>
                 </div>
                 <p>I'm a paragraph</p>
             </div>
@@ -42,8 +52,37 @@
     </ul>
 <script>
         $(document).ready(function() {
-            console.log($('.two').parents())
-            console.log($('.parentone').children())
+            $('p').click(function() {
+                $(this).toggleClass('myClassA');
+                $(this).toggleClass('myClassB');
+            })
+        })
+            //     if ($(this).hasClass('myClassA')) {
+            //         $(this).removeClass('myClassA')
+            //         $(this).addClass('myClassB')
+            //     } else {
+            //     $(this).removeClass('myClassB')
+            //     $(this).addClass('myClassA')
+            //     }
+            // })
+            // $('p').click(function() {
+            //     $(this).css({
+            //         'background-color':'green',
+            //         'color':'yellow'
+            //     })
+            // })
+            // $('.parentone').children().last().css('color', 'red');
+            // $('p').css('background-color', 'blue');
+            // $('p').css({
+            //     'background-color':'yellow',
+            //     'color':'red'
+            // })
+
+            // $('.one').filter('p').html('FILTERED')
+            // $('.parentone').children().first().html('FIRST CHILD')
+            // $('.parentone').children().last().html('LAST CHILD')
+            // $('.parentone').children().eq(1).html('SECOND')
+        
             // $('.parentone').children().each(function(index) {
             //     $(this).text(index + ' new one')
             // })
@@ -54,7 +93,6 @@
             // $('.childone').next().html('NEXT')
             // $('.childone').nextAll().html('NEXTALL')
             
-        })
     //     var holder = ''
     //     $('li:eq(0)').mouseover(function(event) {
     //         holder = $(this).text()
